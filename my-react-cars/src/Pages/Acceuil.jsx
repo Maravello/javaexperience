@@ -10,7 +10,7 @@ function Acceuil() {
     useEffect(() => {
         const fetchCars = async () => {
             try {
-                const response = await fetch('/voiture/voitures');
+                const response = await fetch('https://autocar-backend-23r3.onrender.com/voiture/voitures');
                 if (!response.ok) throw new Error('API non disponible');
                 
                 const data = await response.json();

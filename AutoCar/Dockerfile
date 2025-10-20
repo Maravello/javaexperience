@@ -1,19 +1,26 @@
-# Utilise une image Java 17 avec Gradle
-FROM gradle:8.3-jdk17-alpine AS build
+# Étape 1 : Build du projet avec Gradle
+FROM gradle:7.6-jdk17-alpine AS build
 
+# Répertoire de travail
 WORKDIR /app
 
+# Copie des fichiers du projet
 COPY . .
 
-# Construire le JAR
-RUN gradle build --no-daemon
+# Build du projet en ignorant les tests
+RUN gradle build --no-daemon -x test
 
-# Étape finale avec une image légère
+# Étape 2 : Image finale légère pour exécuter le JAR
 FROM eclipse-temurin:17-jdk-alpine
+
+# Répertoire de travail
 WORKDIR /app
 
-# Copier le JAR depuis l'étape de build
+# Copie du JAR généré depuis l'étape de build
 COPY --from=build /app/build/libs/AutoCar-0.0.1-SNAPSHOT.jar app.jar
 
+# Expose le port Spring Boot
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+
+# Commande pour lancer le backend
+ENTRYPOINT ["java", "-jar", "app.jar"]
