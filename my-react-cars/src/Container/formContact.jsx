@@ -13,28 +13,36 @@ function FormContact() {
     const [error, setError] = React.useState(false);
 
 
-    async function sendData(Anom,Aprenom,Aemail,Amessage){
-    try {
-        const response = await fetch('https://autocar-backend-23r3.onrender.com/contact/NewMessage', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                nom: Anom,
-                prenom: Aprenom,
-                mail: Aemail,
-                message: Amessage,
-                repondu: false
-            })
-        });
+    async function sendData(Anom, Aprenom, Aemail, Amessage) {
+        try {
+            const response = await fetch('https://autocar-backend-23r3.onrender.com/contact/NewMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nom: Anom,
+                    prenom: Aprenom,
+                    mail: Aemail,  // Vérifiez que c'est bien "mail" et pas "email"
+                    message: Amessage,
+                    repondu: false
+                })
+            });
 
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Erreur:', error);
+            console.log("Réponse HTTP:", response.status);
+            
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data;
+            
+        } catch (error) {
+            console.error('Erreur détaillée:', error);
+            throw error;
+        }
     }
-}
     function HandleChenges(e) {
         const {name, value} = e.target;
         e.target.style.color = "red";
@@ -52,7 +60,7 @@ function FormContact() {
             setMessage(value);
         }
 }
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         
         e.preventDefault();
         setSubmitClicked(true);
