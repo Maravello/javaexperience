@@ -25,7 +25,7 @@ function FormContact() {
                 body: JSON.stringify({
                     nom: Anom,
                     prenom: Aprenom,
-                    mail: Aemail,  // Vérifiez que c'est bien "mail" et pas "email"
+                    mail: Aemail,
                     message: Amessage,
                     repondu: false
                 })
@@ -47,7 +47,7 @@ function FormContact() {
         }
     }
 
-    async function handleSubmit(e) {  // Ajoutez async ici
+    async function handleSubmit(e) {
         e.preventDefault();
         setSubmitClicked(true);
         
@@ -56,10 +56,11 @@ function FormContact() {
         
         if (nom && prenom && email && message) {
             try {
-                audio2.currentTime = 0;
-                audio2.play();
+                if (audio2) {
+                    audio2.currentTime = 0;
+                    audio2.play();
+                }
                 
-                // AJOUTEZ AWAIT ICI
                 const result = await sendData(nom, prenom, email, message);
                 console.log("Insertion réussie:", result);
                 
@@ -68,20 +69,23 @@ function FormContact() {
                 
             } catch (error) {
                 console.error("Erreur lors de l'envoi:", error);
-                audio4.currentTime = 5.2;
-                audio4.play();
+                if (audio4) {
+                    audio4.currentTime = 5.2;
+                    audio4.play();
+                }
                 alert("Erreur lors de l'envoi du message. Veuillez réessayer.");
             }
         } else {
-            audio4.currentTime = 5.2;
-            audio4.play();
+            if (audio4) {
+                audio4.currentTime = 5.2;
+                audio4.play();
+            }
             setError(true);
             alert("Veuillez remplir tous les champs du formulaire avant de soumettre.");
-            setError(false);
+            setTimeout(() => setError(false), 3000);
         }
     }
 
-    // Le reste de votre code reste identique...
     function HandleChenges(e) {
         const {name, value} = e.target;
         e.target.style.color = "red";
@@ -109,6 +113,12 @@ function FormContact() {
             setResetClicked(true);
             setTimeout(() => setResetClicked(false), 1000);
         }
+        
+        // Réinitialiser les champs du formulaire
+        setNom("");
+        setPrenom("");
+        setEmail("");
+        setMessage("");
     }
 
     useEffect(() => {
@@ -127,9 +137,9 @@ function FormContact() {
             <audio id="clickSound4" src="/hey-21.mp3" />
             
             <h2>Formulaire de Contact</h2>
-            <form onSubmit={handleSubmit}>  {/* Changez ici */}
+            <form onSubmit={handleSubmit}>
                 <table border="1" className="TableauFormulaire">
-                    <tbody>  {/* Ajoutez tbody */}
+                    <tbody>
                         <tr>
                             <th colSpan="2">
                                 <label>Veuillez nous contacter ci-dessous</label>
@@ -140,7 +150,13 @@ function FormContact() {
                                 <label>Nom :</label>
                             </td>
                             <td>
-                                <input type="text" name="nom" value={nom} onChange={HandleChenges} required />
+                                <input 
+                                    type="text" 
+                                    name="nom" 
+                                    value={nom} 
+                                    onChange={HandleChenges} 
+                                    required 
+                                />
                             </td>
                         </tr>
                         <tr>
@@ -148,7 +164,13 @@ function FormContact() {
                                 <label>Prénom :</label>
                             </td>
                             <td>
-                                <input type="text" name="prenom" value={prenom} onChange={HandleChenges} required />
+                                <input 
+                                    type="text" 
+                                    name="prenom" 
+                                    value={prenom} 
+                                    onChange={HandleChenges} 
+                                    required 
+                                />
                             </td>
                         </tr>
                         <tr>
@@ -156,7 +178,13 @@ function FormContact() {
                                 <label>Email :</label>
                             </td>
                             <td>
-                                <input type="email" name="email" value={email} onChange={HandleChenges} required />
+                                <input 
+                                    type="email" 
+                                    name="email" 
+                                    value={email} 
+                                    onChange={HandleChenges} 
+                                    required 
+                                />
                             </td>
                         </tr>
                         <tr>
@@ -164,24 +192,47 @@ function FormContact() {
                                 <label>Message :</label>
                             </td>
                             <td>
-                                <textarea name="message" value={message} onChange={HandleChenges} rows="4" cols="30" required></textarea>
+                                <textarea 
+                                    name="message" 
+                                    value={message} 
+                                    onChange={HandleChenges} 
+                                    rows="4" 
+                                    cols="30" 
+                                    required
+                                />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <button type="button" onClick={handleReset}>Effacer</button>
+                                <button type="button" onClick={handleReset}>
+                                    Effacer
+                                </button>
                             </td>
                             <td>
-                                <button type="submit">Envoyer</button>
+                                <button type="submit">
+                                    Envoyer
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                {resetClicked && <img src="/giphy.gif" alt="Merci" style={{ width: "200px", textAlign: "center", left: "auto" }} />}
-                {error && <img src="/giphysecond.gif" alt="Merci" style={{ width: "200px", textAlign: "center", left: "auto" }} />}
+                {resetClicked && (
+                    <img 
+                        src="/giphy.gif" 
+                        alt="Merci" 
+                        style={{ width: "200px", textAlign: "center", left: "auto" }} 
+                    />
+                )}
+                {error && (
+                    <img 
+                        src="/giphysecond.gif" 
+                        alt="Erreur" 
+                        style={{ width: "200px", textAlign: "center", left: "auto" }} 
+                    />
+                )}
             </form>
         </div>
-    )
+    );
 }
 
 export default FormContact;
