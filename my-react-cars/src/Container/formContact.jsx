@@ -69,7 +69,7 @@ function FormContact() {
         if (nom && prenom && email && message && submitClicked) {
             audio2.currentTime = 0; // remet au début du son
             audio2.play();
-            sendData(nom,prenom,email,message);
+            await sendData(nom,prenom,email,message);
             alert(`Merci ${prenom} ${nom} pour votre message : "${message}". Nous vous contacterons bientôt à l'adresse ${email}.`);
             navigate("/");
         }else{
