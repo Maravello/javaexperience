@@ -64,25 +64,20 @@ function FormContact() {
         
         if (nom && prenom && email && message) {
             try {
-                if (audio2) {
-                    audio2.currentTime = 0;
-                    audio2.play();
-                }
-                
+              
                 console.log("🎯 Début de l'envoi...");
                 const result = await sendData(nom, prenom, email, message);
                 console.log("🎉 Insertion réussie:", result);
+                  if (audio2) {
+                    audio2.currentTime = 0;
+                    audio2.play();
+                }
                 
                 alert(`Merci ${prenom} ${nom} pour votre message : "${message}". Nous vous contacterons bientôt à l'adresse ${email}.`);
                 navigate("/");
                 
             } catch (error) {
                 console.error("💥 Erreur lors de l'envoi:", error);
-                if (audio4) {
-                    audio4.currentTime = 5.2;
-                    audio4.play();
-                }
-                alert("Erreur lors de l'envoi du message. Veuillez réessayer. Détails dans la console (F12).");
             } finally {
                 setIsLoading(false);
             }
