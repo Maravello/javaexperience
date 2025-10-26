@@ -170,7 +170,7 @@ function FormContact() {
                                     name="nom" 
                                     value={nom} 
                                     onChange={HandleChenges} 
-                                    required 
+                                     
                                     disabled={isLoading}
                                 />
                             </td>
@@ -185,7 +185,7 @@ function FormContact() {
                                     name="prenom" 
                                     value={prenom} 
                                     onChange={HandleChenges} 
-                                    required 
+                                     
                                     disabled={isLoading}
                                 />
                             </td>
@@ -200,7 +200,7 @@ function FormContact() {
                                     name="email" 
                                     value={email} 
                                     onChange={HandleChenges} 
-                                    required 
+                                     
                                     disabled={isLoading}
                                 />
                             </td>
@@ -216,7 +216,7 @@ function FormContact() {
                                     onChange={HandleChenges} 
                                     rows="4" 
                                     cols="30" 
-                                    required
+                                    
                                     disabled={isLoading}
                                 />
                             </td>
