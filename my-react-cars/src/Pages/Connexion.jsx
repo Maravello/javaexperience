@@ -8,3 +8,5 @@ function Myconnexion(){
         <Navbar />
     )
 }
+
+export default Myconnexion; 
