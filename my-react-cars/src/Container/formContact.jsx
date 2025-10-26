@@ -11,6 +11,30 @@ function FormContact() {
     const [resetClicked, setResetClicked] = React.useState(false);
     const navigate = useNavigate();
     const [error, setError] = React.useState(false);
+
+
+    async function sendData(Anom,Aprenom,Aemail,Amessage){
+    try {
+        const response = await fetch('https://autocar-backend-23r3.onrender.com/contact/NewMessage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nom: Anom,
+                prenom: Aprenom,
+                mail: Aemail,
+                message: Amessage,
+                repondu: false
+            })
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Erreur:', error);
+    }
+}
     function HandleChenges(e) {
         const {name, value} = e.target;
         e.target.style.color = "red";
@@ -37,6 +61,7 @@ function FormContact() {
         if (nom && prenom && email && message && submitClicked) {
             audio2.currentTime = 0; // remet au début du son
             audio2.play();
+            sendData(nom,prenom,email,message);
             alert(`Merci ${prenom} ${nom} pour votre message : "${message}". Nous vous contacterons bientôt à l'adresse ${email}.`);
             navigate("/");
         }else{
