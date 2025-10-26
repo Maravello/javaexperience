@@ -26,7 +26,7 @@ import com.concessionnaire.AutoCar.modele.ContactVoiture;
 
 @RestController
 @RequestMapping("/contact")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"https://javaexperience.onrender.com", "http://localhost:3000"})
 public class ContactVoitureController {
     public final contactVoitureInterfaces ContactVoitureController;
 
