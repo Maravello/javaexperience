@@ -33,26 +33,28 @@ function Apropos() {
     }
 
     function playEngineSound(duration = 1000) {
-        try {
-            const ctx = new (window.AudioContext || window.webkitAudioContext)();
-            const o = ctx.createOscillator();
-            const g = ctx.createGain();
-            o.type = "sawtooth";
-            o.frequency.setValueAtTime(120, ctx.currentTime);
-            o.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + duration / 1500);
-            g.gain.setValueAtTime(0.0001, ctx.currentTime);
-            g.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.02);
-            g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration / 1000);
-            o.connect(g);
-            g.connect(ctx.destination);
-            o.start();
-            setTimeout(() => {
-                o.stop();
-                ctx.close();
-            }, duration);
-        } catch (e) {
-            // pas d'AudioContext (vieil environnement) -> silence
-        }
+       try {
+        // Créer un élément audio
+        const audio = new Audio('/car-engine.mp3');
+        
+        // Configurer l'audio
+        audio.volume = 0.7; // Volume entre 0 et 1
+        audio.playbackRate = 1.0; // Vitesse de lecture normale
+        
+        // Jouer le son
+        audio.play().catch(e => {
+            console.warn("Impossible de jouer le son:", e);
+        });
+        
+        // Arrêter après la durée spécifiée
+        setTimeout(() => {
+            audio.pause();
+            audio.currentTime = 0; // Remettre au début
+        }, duration);
+        
+    } catch (e) {
+        console.warn("Erreur de lecture audio:", e);
+    }
     }
 
     return(
