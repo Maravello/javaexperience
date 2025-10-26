@@ -10,7 +10,7 @@ function Myconnexion(){
 
     async function VerifyInput(){
         if(email != null && email.length()>0 &&  password != null && password.length()>0){
-            data = await fetch()
+            //data = await fetch()
         }else{
             alert("Veuillez remplir correctement les champs")
         }
