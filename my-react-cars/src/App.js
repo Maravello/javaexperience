@@ -3,6 +3,7 @@ import Acceuil from "./Pages/Acceuil";
 import Contact from "./Pages/Contact";
 import Apropos from "./Pages/Apropos";
 import Voitures from "./Pages/Voiture";
+import Connexion from "./Pages/Connexion";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./StyleEverywhere/Stylish.css";
 

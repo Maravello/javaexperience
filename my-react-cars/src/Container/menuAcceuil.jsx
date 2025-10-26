@@ -13,6 +13,7 @@ function MenuAcceuil() {
                     <li class="crumb"><button><Link to="/apropos">About</Link></button></li>
                     <li class="crumb"><button><Link to="/Voiture">Voitures</Link></button></li>
                     <li class="crumb"><button><Link to="/Contact"> Contact</Link></button></li>
+                    <li class="crumb"><button><Link to="/Connexion"> Connexion</Link></button></li>
                 </ol>
             </nav>
         </div>
