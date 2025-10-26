@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.concessionnaire.AutoCar.repository.professionnelVoitureInterfaces;
 
 @RestController
 @RequestMapping("/voitures/professionnel")
+@CrossOrigin(origins = {"https://javaexperience.onrender.com", "http://localhost:3000"})
 public class professionnelVoitureController {
 
     public final professionnelVoitureInterfaces ProfessionnelVoitureInterfaces;

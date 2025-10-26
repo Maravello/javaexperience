@@ -16,7 +16,7 @@ import com.concessionnaire.AutoCar.modele.ClientsVoiture;
 import com.concessionnaire.AutoCar.repository.ClientsVoitureInterfaces;
 @RestController
 @RequestMapping("/clients/voiture")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"https://javaexperience.onrender.com", "http://localhost:3000"})
 public class ClientsVoitureController {
     public final ClientsVoitureInterfaces clientsVoitureController;
 
