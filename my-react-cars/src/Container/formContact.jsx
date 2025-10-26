@@ -242,13 +242,13 @@ function FormContact() {
                         style={{ width: "200px", textAlign: "center", left: "auto" }} 
                     />
                 )}
-                {error && (
+                {/* {error && (
                     <img 
                         src="/giphysecond.gif" 
                         alt="Erreur" 
                         style={{ width: "200px", textAlign: "center", left: "auto" }} 
                     />
-                )}
+                )} */}
             </form>
         </div>
     );
