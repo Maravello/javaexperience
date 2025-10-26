@@ -67,12 +67,23 @@ function FormContact() {
         const audio2 = document.getElementById("clickSound2");
         const audio4 = document.getElementById("clickSound4");
         if (nom && prenom && email && message && submitClicked) {
-            audio2.currentTime = 0; // remet au début du son
-            audio2.play();
-            await sendData(nom,prenom,email,message);
-            alert(`Merci ${prenom} ${nom} pour votre message : "${message}". Nous vous contacterons bientôt à l'adresse ${email}.`);
-            navigate("/");
-        }else{
+           try {
+                audio2.currentTime = 0;
+                audio2.play();
+    I
+                const result = await sendData(nom, prenom, email, message);
+                console.log("Insertion réussie:", result);
+                
+                alert(`Merci ${prenom} ${nom} pour votre message : "${message}". Nous vous contacterons bientôt à l'adresse ${email}.`);
+                navigate("/");
+                
+            } catch (error) {
+                console.error("Erreur lors de l'envoi:", error);
+                audio4.currentTime = 5.2;
+                audio4.play();
+                alert("Erreur lors de l'envoi du message. Veuillez réessayer.");
+            }
+        } else {
             audio4.currentTime = 5.2;
             audio4.play();
             setError(true);
