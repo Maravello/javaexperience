@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Container/menuAcceuil";
+import "../StyleEverywhere"
 
 function Myconnexion(){
 
@@ -7,7 +8,7 @@ function Myconnexion(){
     return(
         <div>
             <Navbar />
-            <form>
+            <form >
                 <table className="TableauFormulaire">
                 <tr>
                     <th>
@@ -23,6 +24,11 @@ function Myconnexion(){
                     </th>
                     <td>
                         <input type="password" name="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" />
                     </td>
                 </tr>
                 </table>
