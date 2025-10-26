@@ -176,6 +176,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/apropos" element={<Apropos />} />
           <Route path="/Voiture" element={<Voitures />} />
+          <Route path="/Connexion" element={<Connexion />} />
         </Routes>
       </BrowserRouter>
 
