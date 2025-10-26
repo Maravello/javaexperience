@@ -21,74 +21,74 @@ public class ContactVoiture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long  Id;
+    private long  id;
 
     @Column(name="Nom")
-    private String Nom;
+    private String nom;
 
     @Column(name="Prenom")
-    private String Prenom;
+    private String prenom;
     
     @Column(name="Mail")
-    private String Mail;
+    private String mail;
 
     @Column(name="Message")
-    private String Message;
+    private String message;
 
     @Column(name="Repondu")
-    private boolean Repondu;
+    private boolean repondu;
 
     @Column(name="Date_Creation")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDate Date = LocalDate.now();
+    private LocalDate date = LocalDate.now();
 
 
 
     ////////////////RETURN SECTION ////////////
     public long getId(){
-        return this.Id;
+        return this.id;
     }
     public String getNom(){
-        return this.Nom;
+        return this.nom;
     }
     public String getPrenom(){
-        return this.Prenom;
+        return this.prenom;
     }
     public String getMail(){
-        return this.Mail;
+        return this.mail;
     }
     public String getMessage(){
-        return this.Message;
+        return this.message;
     }
     public LocalDate getDate(){
-        return this.Date;
+        return this.date;
     }
      public Boolean getRepondu(){
-        return this.Repondu;
+        return this.repondu;
     }
 
     ////////////SET SECTION /////////////////////
 
      public void  setId(long val){
-        this.Id = val;
+        this.id = val;
     }
     public void setNom(String val){
-        this.Nom = val;
+        this.nom = val;
     }
     public void setPrenom(String val){
-        this.Prenom = val;
+        this.prenom = val;
     }
     public void setMail(String val){
-        this.Mail = val;
+        this.mail = val;
     }
     public void setMessage(String val){
-        this.Message = val;
+        this.message = val;
     }
      public void setDate(){
-         this.Date = LocalDate.now();
+         this.date = LocalDate.now();
     }
 
     public void setRepondu(boolean val){
-        this.Repondu = val;
+        this.repondu = val;
     }
 }

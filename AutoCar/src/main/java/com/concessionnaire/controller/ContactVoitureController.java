@@ -1,6 +1,7 @@
 package com.concessionnaire.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,14 +40,23 @@ public class ContactVoitureController {
     }
 
     @GetMapping("/by-date/{dateId}")
-    public List<ContactVoiture> getMessageByDate(@PathVariable LocalDate param) {
-        return  ContactVoitureController.findByDate(param);
+    public List<ContactVoiture> getMessageByDate(@PathVariable String param) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate = LocalDate.parse(param, formatter);
+        return ContactVoitureController.findByDate(localDate);
        
     }
 
     @GetMapping("/Message")
     public List<ContactVoiture> getAllMessage() {
         return ContactVoitureController.findAll();
+    }
+
+    @GetMapping("/before-date/{date}")
+    public List<ContactVoiture> getMessagesBeforeDate(@PathVariable String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        return ContactVoitureController.findByDateLessThanEqual(localDate);
     }
 
     @DeleteMapping("/DeleteMessage/{id}")

@@ -10,10 +10,13 @@ import org.springframework.stereotype.Repository;
 import com.concessionnaire.AutoCar.modele.ContactVoiture;
 public interface contactVoitureInterfaces  extends JpaRepository<ContactVoiture, Long> {
 
-    Optional<ContactVoiture> findByMail (String aMail);
-    Optional<ContactVoiture> findByNom (String aMail);
-    Optional<ContactVoiture> findByPrenom (String aMail);
+    List<ContactVoiture> findByMail(String mail);
+    List<ContactVoiture> findByNom(String nom);
+    List<ContactVoiture> findByPrenom(String prenom);
     List<ContactVoiture> findByDateLessThanEqual(LocalDate Date);
-    List<ContactVoiture> findByDate(LocalDate  date);
+   // List<ContactVoiture> findByDate(LocalDate  date);
+    List<ContactVoiture> findByRepondu(boolean repondu);
+    List<ContactVoiture> findByDate(LocalDate date);
+    List<ContactVoiture> findByDateBetween(LocalDate startDate, LocalDate endDate);
 
 }
