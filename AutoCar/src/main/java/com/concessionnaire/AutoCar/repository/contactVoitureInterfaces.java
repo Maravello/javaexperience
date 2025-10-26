@@ -14,8 +14,6 @@ public interface contactVoitureInterfaces  extends JpaRepository<ContactVoiture,
     Optional<ContactVoiture> findByNom (String aMail);
     Optional<ContactVoiture> findByPrenom (String aMail);
     List<ContactVoiture> findByDateLessThanEqual(LocalDate Date);
-    List<ContactVoiture> findByDateId(long id);
-
-    ContactVoiture save(ContactVoiture contactVoiture);
+    List<ContactVoiture> findByDate(LocalDate  date);
 
 }

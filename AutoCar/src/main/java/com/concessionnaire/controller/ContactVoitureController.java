@@ -1,5 +1,6 @@
 package com.concessionnaire.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +39,8 @@ public class ContactVoitureController {
     }
 
     @GetMapping("/by-date/{dateId}")
-    public List<ContactVoiture> getMessageByDate(@PathVariable long param) {
-        return  ContactVoitureController.findByDateId(param);
+    public List<ContactVoiture> getMessageByDate(@PathVariable LocalDate param) {
+        return  ContactVoitureController.findByDate(param);
        
     }
 
