@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
-import { Link } from "react-router-dom";
-import "../StyleEverywhere/Stylish.css";
 import { useNavigate } from "react-router-dom";
+import "../StyleEverywhere/Stylish.css";
 
 function FormContact() {
     const [nom, setNom] = React.useState("");
@@ -10,39 +9,47 @@ function FormContact() {
     const [message, setMessage] = React.useState("");
     const [submitClicked, setSubmitClicked] = React.useState(false);
     const [resetClicked, setResetClicked] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
     const navigate = useNavigate();
     const [error, setError] = React.useState(false);
 
     async function sendData(Anom, Aprenom, Aemail, Amessage) {
         try {
-            console.log("Envoi des données:", { Anom, Aprenom, Aemail, Amessage });
+            console.log("🔄 Envoi des données vers l'API...");
             
+            const requestBody = {
+                nom: Anom,
+                prenom: Aprenom,
+                mail: Aemail,
+                message: Amessage,
+                repondu: false
+            };
+
+            console.log("📦 Données envoyées:", requestBody);
+
             const response = await fetch('https://autocar-backend-23r3.onrender.com/contact/NewMessage', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    nom: Anom,
-                    prenom: Aprenom,
-                    mail: Aemail,
-                    message: Amessage,
-                    repondu: false
-                })
+                body: JSON.stringify(requestBody)
             });
 
-            console.log("Réponse HTTP:", response.status);
+            console.log("📡 Statut de la réponse:", response.status);
+            console.log("📡 Headers de la réponse:", response.headers);
             
             if (!response.ok) {
-                throw new Error(`Erreur HTTP: ${response.status}`);
+                const errorText = await response.text();
+                console.error("❌ Erreur serveur:", errorText);
+                throw new Error(`Erreur HTTP: ${response.status} - ${errorText}`);
             }
 
             const data = await response.json();
-            console.log("Données reçues:", data);
+            console.log("✅ Données reçues:", data);
             return data;
             
         } catch (error) {
-            console.error('Erreur détaillée:', error);
+            console.error('❌ Erreur détaillée:', error);
             throw error;
         }
     }
@@ -50,6 +57,7 @@ function FormContact() {
     async function handleSubmit(e) {
         e.preventDefault();
         setSubmitClicked(true);
+        setIsLoading(true);
         
         const audio2 = document.getElementById("clickSound2");
         const audio4 = document.getElementById("clickSound4");
@@ -61,19 +69,22 @@ function FormContact() {
                     audio2.play();
                 }
                 
+                console.log("🎯 Début de l'envoi...");
                 const result = await sendData(nom, prenom, email, message);
-                console.log("Insertion réussie:", result);
+                console.log("🎉 Insertion réussie:", result);
                 
                 alert(`Merci ${prenom} ${nom} pour votre message : "${message}". Nous vous contacterons bientôt à l'adresse ${email}.`);
                 navigate("/");
                 
             } catch (error) {
-                console.error("Erreur lors de l'envoi:", error);
+                console.error("💥 Erreur lors de l'envoi:", error);
                 if (audio4) {
                     audio4.currentTime = 5.2;
                     audio4.play();
                 }
-                alert("Erreur lors de l'envoi du message. Veuillez réessayer.");
+                alert("Erreur lors de l'envoi du message. Veuillez réessayer. Détails dans la console (F12).");
+            } finally {
+                setIsLoading(false);
             }
         } else {
             if (audio4) {
@@ -82,7 +93,10 @@ function FormContact() {
             }
             setError(true);
             alert("Veuillez remplir tous les champs du formulaire avant de soumettre.");
-            setTimeout(() => setError(false), 3000);
+            setTimeout(() => {
+                setError(false);
+                setIsLoading(false);
+            }, 3000);
         }
     }
 
@@ -114,7 +128,6 @@ function FormContact() {
             setTimeout(() => setResetClicked(false), 1000);
         }
         
-        // Réinitialiser les champs du formulaire
         setNom("");
         setPrenom("");
         setEmail("");
@@ -137,6 +150,13 @@ function FormContact() {
             <audio id="clickSound4" src="/hey-21.mp3" />
             
             <h2>Formulaire de Contact</h2>
+            
+            {isLoading && (
+                <div style={{color: 'blue', marginBottom: '10px'}}>
+                    ⏳ Envoi en cours...
+                </div>
+            )}
+            
             <form onSubmit={handleSubmit}>
                 <table border="1" className="TableauFormulaire">
                     <tbody>
@@ -156,6 +176,7 @@ function FormContact() {
                                     value={nom} 
                                     onChange={HandleChenges} 
                                     required 
+                                    disabled={isLoading}
                                 />
                             </td>
                         </tr>
@@ -170,6 +191,7 @@ function FormContact() {
                                     value={prenom} 
                                     onChange={HandleChenges} 
                                     required 
+                                    disabled={isLoading}
                                 />
                             </td>
                         </tr>
@@ -184,6 +206,7 @@ function FormContact() {
                                     value={email} 
                                     onChange={HandleChenges} 
                                     required 
+                                    disabled={isLoading}
                                 />
                             </td>
                         </tr>
@@ -199,18 +222,19 @@ function FormContact() {
                                     rows="4" 
                                     cols="30" 
                                     required
+                                    disabled={isLoading}
                                 />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <button type="button" onClick={handleReset}>
+                                <button type="button" onClick={handleReset} disabled={isLoading}>
                                     Effacer
                                 </button>
                             </td>
                             <td>
-                                <button type="submit">
-                                    Envoyer
+                                <button type="submit" disabled={isLoading}>
+                                    {isLoading ? "Envoi..." : "Envoyer"}
                                 </button>
                             </td>
                         </tr>
