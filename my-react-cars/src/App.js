@@ -4,6 +4,7 @@ import Contact from "./Pages/Contact";
 import Apropos from "./Pages/Apropos";
 import Voitures from "./Pages/Voiture";
 import Connexion from "./Pages/Connexion";
+import TDB from "./Pages/TableauDeBord";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./StyleEverywhere/Stylish.css";
 
@@ -177,6 +178,7 @@ function App() {
           <Route path="/apropos" element={<Apropos />} />
           <Route path="/Voiture" element={<Voitures />} />
           <Route path="/Connexion" element={<Connexion />} />
+          <Route path="/Tableau-de-bord" element={<TDB />}/>
         </Routes>
       </BrowserRouter>
 

@@ -12,5 +12,6 @@ public interface ClientsVoitureInterfaces extends JpaRepository<ClientsVoiture, 
 
     // Méthode custom, garde-la si elle correspond à un besoin précis
     Optional<ClientsVoiture> findByVoitureVoulu_IdAndId(Long idVoiture, Long idClient);
+    Optional<ClientsVoiture> findByEmailAndPassword(String email, String Password );
 
 }
