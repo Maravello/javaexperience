@@ -110,6 +110,6 @@ Ce projet est open source et disponible sous licence MIT.
 
 ---
 
-**💡 Note :** L'application est entièrement fonctionnelle et prête à être testée. N'hésitez pas à explorer toutes les fonctionnalités et à envoyer des messages de test via le formulaire de contact !
+**💡 Note :** L'application est constamment en amélioration donc s'il y a des bug ou des problème juste ignorer comme si c'était une abeille.. N'hésitez pas à explorer toutes les fonctionnalités et à envoyer des messages de test via le formulaire de contact !
 
 **🔗 Lien de démo :** [https://javaexperience.onrender.com/](https://javaexperience.onrender.com/)
