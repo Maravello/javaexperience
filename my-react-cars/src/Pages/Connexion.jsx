@@ -6,12 +6,32 @@ import { useNavigate } from "react-router-dom";
 function Myconnexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+  ////////inscirption///////
+  const[nom,SetNom] = useState("");
+  const[prenom,SetPrenom] = useState("");
+  const[adresse,SetAdresse] = useState("");
+  const[telephone,SetTelephone] = useState("");
+  
   const navigate = useNavigate();
 
   
   const handleRedirect = () => {
     navigate("/Tableau-de-bord");
   };
+
+
+  function senddata(e){
+      e.preventDefault();
+      localStorage.setItem("nom", nom);
+      localStorage.setItem("prenom", prenom);
+      localStorage.setItem("adresse", adresse);
+      localStorage.setItem("telephone", telephone);
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+
+      handleRedirect();
+  }
 
   const verifyInput = async (e) => {
     e.preventDefault();
@@ -61,16 +81,17 @@ function Myconnexion() {
     <div>
       <Navbar />
       <audio id="clickSound" src="/typewriter.mp3" />
-      <form onSubmit={verifyInput}>
-        <table>
+      <form onSubmit={verifyInput} disabled>
+        <table disabled style={{float: "left" }}>
           <tr>
-            <th>Email</th>
+            <th >Email</th>
             <td>
               <input
                 type="email"
                 name="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value) }
+                disabled
               />
             </td>
           </tr>
@@ -82,16 +103,71 @@ function Myconnexion() {
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled
               />
             </td>
           </tr>
           <tr>
             <td colSpan={2}>
-              <input type="submit" value="Se connecter" />
+              <input type="submit" value="Se connecter"disabled />
             </td>
           </tr>
         </table>
+        
       </form>
+
+      <table border="1" style={{float: "right", borderColor: "blue"}}>
+            <tr>
+              <th colSpan="2">
+                  Inscription
+              </th>
+            </tr>
+            <tr>
+              <td>
+                Nom
+              </td>
+              <td>
+                <input type="text" name="name" id="" value={nom} onChange={(e) => SetNom(e.target.value)} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Prénom
+              </td>
+              <td>
+                <input type="text" name="Prenom" id=""  value={prenom} onChange={(e) => SetPrenom(e.target.value)}/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Email
+              </td>
+              <td>
+                <input type="email" name="mail" id="" value={email} onChange={(e) => setEmail(e.target.value)} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Adresse
+              </td>
+              <td>
+                <input type="text" name="adress" id="" value={adresse} onChange={(e) => SetAdresse(e.target.value)} />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Téléphone
+              </td>
+              <td>
+                 <input type="number" name="tel" id="" value={telephone} onChange={(e) => SetTelephone(e.target.value)} />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                <button type="submit" style={{width: "100%"}} onClick={senddata}>Envoyer</button>
+              </td>
+            </tr>
+        </table>
     </div>
   );
 }

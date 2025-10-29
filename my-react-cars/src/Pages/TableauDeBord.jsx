@@ -1,14 +1,23 @@
-import React from "react";
-import Navbar from "../Container/menuAcceuil"
-import { data } from "react-router-dom";
+import React, { useState } from "react";
+import TableauDebord from "../Container/TableauDeBordContainer"
 
 
 
 function TableauDeBord(){
 
-    const client = JSON.parse(localStorage.getItem("client"))
+   const [client, setClient] = useState({
+    Nom: localStorage.getItem("nom") || "",
+    Prenom: localStorage.getItem("prenom") || "",
+    adresse: localStorage.getItem("adresse") || "",
+    telephone: localStorage.getItem("telephone") || "",
+    email: localStorage.getItem("email") || "",
+    password: localStorage.getItem("password") || "",
+});
     return(
-        <Navbar nom={client.nom} />
+        <div>
+              <TableauDebord Nom={client.Nom} Prenom={client.Prenom} />
+        </div>
+      
     )
 }
 
