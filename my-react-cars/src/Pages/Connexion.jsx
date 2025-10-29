@@ -80,6 +80,7 @@ function Myconnexion() {
   return (
     <div>
       <Navbar />
+       <h5>Information: La connexion a été désactivé car l'hebrgeur nécessite que je paie un abonnement donc pour le moment pas de connexion (l'inscription aussi).</h5>
       <audio id="clickSound" src="/typewriter.mp3" />
       <form onSubmit={verifyInput} disabled>
         <table disabled style={{float: "left" }}>
@@ -168,6 +169,7 @@ function Myconnexion() {
               </td>
             </tr>
         </table>
+       
     </div>
   );
 }
