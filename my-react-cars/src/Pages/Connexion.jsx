@@ -8,14 +8,42 @@ function Myconnexion() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  
   const handleRedirect = () => {
     navigate("/Tableau-de-bord");
   };
 
-  const verifyInput = (e) => {
+  const verifyInput = async (e) => {
     e.preventDefault();
     if (email && email.length > 0 && password && password.length > 0) {
-      handleRedirect();
+
+      try {
+      const response = await fetch("https://autocar-backend-23r3.onrender.com/clients/voiture/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+        if (response.ok) {
+        const data = await response.json();
+
+        localStorage.setItem("client", JSON.stringify(data));
+        navigate("/TableauDeBord");
+      } else {
+
+        const errorData = await response.text();
+        console.error("Erreur de connexion ❌", errorData);
+        alert("Email ou mot de passe incorrect !");
+      }
+    } catch (error) {
+      
+      console.error("Erreur réseau :", error);
+    }
+
     } else {
       alert("Veuillez remplir correctement les champs");
     }

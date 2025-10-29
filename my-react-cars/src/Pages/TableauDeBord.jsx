@@ -6,9 +6,9 @@ import { data } from "react-router-dom";
 
 function TableauDeBord(){
 
-    data = fetch()
+    const client = JSON.parse(localStorage.getItem("client"))
     return(
-        <Navbar />
+        <Navbar nom={client.nom} />
     )
 }
 
