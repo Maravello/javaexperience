@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../StyleEverywhere/Stylish.css";
 import MenuAcceuil from "../Container/menuAcceuil";
-import { useLocation } from "react-router-dom";
+
 
 function Apropos() {
     const [showMore, setShowMore] = useState(false);
     const confettiRef = useRef(null);
-     const location = useLocation()
-    const isConnected = location.state?.isConnected || 'false'
+    
 
     useEffect(() => {
         const onKey = (e) => {
@@ -62,7 +61,7 @@ function Apropos() {
 
     return(
         <div className="apropos-container">
-            <MenuAcceuil isConnected={isConnected ? true : false} />
+            <MenuAcceuil isConnected={localStorage.length >0 ? true: false} />
             <h1 className="Title-a-propos interactive-title"
                 onClick={() => launchConfetti(25)}
                 title="Clique pour lancer des confettis">

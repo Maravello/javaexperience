@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../Container/menuAcceuil";
 import "../StyleEverywhere/Stylish.css";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+
 
 function Myconnexion() {
   const [email, setEmail] = useState("");
@@ -15,12 +15,8 @@ function Myconnexion() {
   const[telephone,SetTelephone] = useState("");
   //////////////////////////////////
 
-  const location = useLocation();
-  // Determine connection status robustly: prefer location.state, fall back to stored client
-  const stateIsConnected =
-    location.state?.isConnected === true || location.state?.isConnected === "true";
-  const storageIsConnected = !!localStorage.getItem("client");
-  const isConnected = stateIsConnected || storageIsConnected;
+
+
   const navigate = useNavigate();
 
   
@@ -87,7 +83,7 @@ function Myconnexion() {
 
   return (
     <div>
-  <Navbar isConnected={isConnected} />
+  <Navbar isConnected={localStorage.length > 0} />
        <h5 style={{textAlign: "center"}}>Information: La connexion a été désactivé car l'hebrgeur nécessite que je paie un abonnement, donc pour le moment pas de connexion (l'inscription aussi).</h5>
       <audio id="clickSound" src="/typewriter.mp3" />
       <form onSubmit={verifyInput} disabled>

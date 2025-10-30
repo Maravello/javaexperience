@@ -47,12 +47,14 @@ function Acceuil() {
     if (error) return <div>❌ Erreur: {error}</div>;
 
     return (
+        
         <div className="ContainerMenuAcceuil">
-            <MenuAcceuil isConnected={isConnected ? true : false}/>
+            <MenuAcceuil  isConnected={localStorage.length >0 ? true: false} />
             {isConnected && <div><h1>Votre panier </h1>
             <table border={1} style={{width: "100%", color: "lightblue", borderColor: "blue", borderRadius: "20px"}}>
                 <tr style={{borderRadius: "20px"}}>
                     <th>
+                        
                         id
                     </th>
                     <th>
@@ -120,7 +122,6 @@ function Acceuil() {
                                 <div className="info-text">
                                     <div className="info-label">Immatriculation</div>
                                     <div className="info-value">{car.immatriculation || 'Non spécifiée'}</div>
-
                                 </div>
 
                             </div>
