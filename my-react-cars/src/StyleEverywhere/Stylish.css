@@ -1,3 +1,41 @@
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+  --primary-gradient: linear-gradient(90deg, #60A5FA, #A78BFA);
+  --secondary-gradient: linear-gradient(180deg, rgba(167,139,250,0.06), rgba(96,165,250,0.03));
+  --card-gradient: linear-gradient(145deg, 
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%);
+  --text-primary: #eaeaff;
+  --text-secondary: #dfe7ff;
+  --bg-dark: #121212;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --shadow-heavy: 0 8px 28px rgba(7,10,25,0.65);
+  --shadow-light: 0 6px 18px rgba(96,165,250,0.12);
+}
+
+/* ===== RÉINITIALISATION ET BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0b1020;
+  color: #eaeaff;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== CONTAINERS PRINCIPAUX ===== */
 .ContainerMenuAcceuil {
     display: flex;
     flex-direction: column;
@@ -11,6 +49,7 @@
     border: 1px solid rgba(167,139,250,0.12);
     box-shadow: 0 8px 28px rgba(7,10,25,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
 }
+
 .TableMenuVoiture{
     display: flex;
     flex-direction: column;
@@ -24,158 +63,17 @@
     border: 1px solid rgba(167,139,250,0.12);
     box-shadow: 0 8px 28px rgba(7,10,25,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
 }
-.tdVoiture{
-    padding: 12px 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: #eaeaff;
-    font-size: 1rem;
-    text-align: center;
-}
 
-/* Titre menu */
-.menu-title {
-    margin: 6px 0 12px 0;
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: #eaeaff;
-    letter-spacing: 0.6px;
-    background: linear-gradient(90deg,#A78BFA,#60A5FA);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-/* Navigation style (liste horizontale) */
-.TableMenuAcceuil .breadcrumb {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 8px;
-    margin: 0;
-    list-style: none;
-}
-.ButtonVoitures{
-    background: linear-gradient(90deg,#60A5FA,#A78BFA);
-    border: none;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 700;
-    box-shadow: 0 6px 18px rgba(96,165,250,0.12);
-    transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
-    width: 100%;
-}
-.ButtonVoitures2{
-    background: linear-gradient(90deg,#60A5FA,#A78BFA);
-    border: none;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 700;
-    box-shadow: 0 6px 18px rgba(96,165,250,0.12);
-    transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
-    width: 100%;
-}
-
-/* Element individuel (positionnement) */
-.crumb {
-    display: inline-flex;
-}
-
-/* Liens en style "bouton" */
-.menu-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #0b1020;
-    font-weight: 700;
-    background: linear-gradient(90deg, rgba(96,165,250,0.15), rgba(167,139,250,0.12));
-    border: 1px solid rgba(255,255,255,0.04);
-    transition: transform .16s ease, box-shadow .18s ease, background .18s ease;
-    backdrop-filter: blur(4px) saturate(120%);
-}
-
-/* Hover / focus / active */
-.menu-link:hover, .menu-link:focus {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(96,165,250,0.14);
-    background: linear-gradient(90deg, rgba(96,165,250,0.22), rgba(167,139,250,0.18));
-    outline: none;
-}
-.menu-link:active {
-    transform: translateY(-1px) scale(.995);
-}
-
-/* Séparateur entre les liens (visuel fin) */
-.crumb:not(:last-child)::after {
-    content: "";
-    width: 1px;
-    height: 28px;
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: -2px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    opacity: 0.6;
-}
-
-/* Responsive: empiler sur petits écrans */
-@media (max-width: 560px) {
-    .TableMenuAcceuil .breadcrumb {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-    }
-    .crumb:not(:last-child)::after { display: none; }
-    .menu-link { justify-content: center; }
-}
-
-.breadcrumb {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 20px;
-    list-style: none;
-    padding: 0;
+/* ===== GRILLE DES VOITURES ===== */
+.voiture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
-}
-
-.crumb {
-    display: inline-block;
-}
-
-/* Séparateur entre les liens */
-.crumb:not(:last-child)::after {
-    content: "|";
-    margin: 0 15px;
-    color: #666;
-    font-weight: bold;
-}
-
-.crumb a {
-    text-decoration: none;
-    color: #007bff;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.crumb a:hover {
-    background-color: #f8f9fa;
-    color: #0056b3;
-}
-
-h1 {
-    text-align: center;
     width: 100%;
-    margin: 10px 0 30px 0;
+    padding: 20px;
 }
 
-/* STYLE BEAU POUR LES CARTES VOITURES */
+/* ===== CARTES DE VOITURES ===== */
 .divCars {
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 30px;
@@ -200,7 +98,6 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Effet de survol */
 .divCars:hover {
     transform: translateY(-8px);
     box-shadow: 
@@ -208,7 +105,7 @@ h1 {
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Badge de luxe */
+/* Badge premium */
 .car-badge {
     position: absolute;
     top: 15px;
@@ -272,35 +169,161 @@ h1 {
     font-weight: 600;
 }
 
-.TableauFormulaire {
-    width: 80%;
-    margin: 0 auto; /* centre horizontalement */
-    border-collapse: collapse;
+/* ===== BOUTONS ===== */
+.ButtonVoitures{
+    background: linear-gradient(90deg,#60A5FA,#A78BFA);
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(96,165,250,0.12);
+    transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
+    width: 100%;
 }
-div{
 
-    width: 80%;
-    margin: 0 auto; /* centre horizontalement */
-    border-collapse: collapse;
-
+.ButtonVoitures2{
+    background: linear-gradient(90deg,#60A5FA,#A78BFA);
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(96,165,250,0.12);
+    transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
+    width: 100%;
 }
+
+.ButtonVoitures:hover,
+.ButtonVoitures2:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(96,165,250,0.18);
+}
+
+.ButtonVoitures:active,
+.ButtonVoitures2:active {
+    transform: translateY(-1px) scale(.99);
+}
+
+/* ===== NAVIGATION ===== */
+.tdVoiture{
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #eaeaff;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Titre menu */
+.menu-title {
+    margin: 6px 0 12px 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #eaeaff;
+    letter-spacing: 0.6px;
+    background: linear-gradient(90deg,#A78BFA,#60A5FA);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Navigation style */
+.TableMenuAcceuil .breadcrumb {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 8px;
+    margin: 0;
+    list-style: none;
+}
+
+/* Element individuel */
+.crumb {
+    display: inline-flex;
+    width: 100%;
+   
+}
+
+/* Liens en style "bouton" */
+.menu-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #0b1020;
+    font-weight: 700;
+    background: linear-gradient(90deg, rgba(96,165,250,0.15), rgba(167,139,250,0.12));
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: transform .16s ease, box-shadow .18s ease, background .18s ease;
+    backdrop-filter: blur(4px) saturate(120%);
+}
+
+/* Hover / focus */
+.menu-link:hover, .menu-link:focus {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(96,165,250,0.14);
+    background: linear-gradient(90deg, rgba(96,165,250,0.22), rgba(167,139,250,0.18));
+    outline: none;
+}
+
+.menu-link:active {
+    transform: translateY(-1px) scale(.995);
+}
+
+/* Séparateur entre les liens */
+.crumb:not(:last-child)::after {
+    content: "";
+    width: 1px;
+    height: 28px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: -2px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    opacity: 0.6;
+}
+
+.breadcrumb {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+    list-style: none;
+    padding: 0;
+    gap: 20px;
+}
+
+/* ===== TYPOGRAPHIE ===== */
+h1 {
+    text-align: center;
+    width: 100%;
+    margin: 10px 0 30px 0;
+    color: #eaeaff;
+}
+
 h2{
     text-align: center;
     margin-top: 20px;
+    color: #eaeaff;
 }
-body {
-    background-color: #121212;
-    color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
+
+/* ===== FORMULAIRES ET TABLEAUX ===== */
+.TableauFormulaire {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
 }
-canvas#visualizer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1; /* derrière tout */
+
+div{
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
 }
+
+/* ===== SECTIONS À PROPOS ===== */
 .a-propos, .apropos {
     max-width: 1000px;
     margin: 30px auto;
@@ -343,7 +366,7 @@ canvas#visualizer {
     opacity: 0.95;
 }
 
-/* Paragraphes et texte dans la section */
+/* Paragraphes et texte */
 .a-propos p, .apropos p {
     line-height: 1.6;
     color: #dfe7ff;
@@ -351,92 +374,7 @@ canvas#visualizer {
     font-size: 1rem;
 }
 
-/* Grille interne réactive */
-.a-propos .apropos-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-}
-@media (min-width: 900px) {
-    .a-propos .apropos-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-/* Petite mise en avant */
-.a-propos .highlight {
-    color: #60A5FA;
-    font-weight: 700;
-}
-
-.music-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #222;
-  color: white;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-}
-
-.music-logo {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-
-.music-name {
-  font-weight: bold;
-  flex-grow: 1;
-  text-align: center;
-}
-
-.music-controls button {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  margin-left: 5px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  border-radius: 5px;
-}
-
-.music-controls button:hover {
-  background-color: #666;
-}
-
-/* Conteneur spécifique à la page À propos */
-.apropos-container {
-    max-width: 1100px;
-    margin: 20px auto 60px;
-    padding: 12px;
-}
-
-/* Ligne d'éléments fun (emoji + contrôles) */
-.fun-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-}
-
-/* Emoji voiture cliquable */
-.car-emoji {
-    font-size: 48px;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 300ms ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.car-emoji:active { transform: translateY(-6px) rotate(-6deg) scale(1.05); }
-.car-emoji:focus { outline: 3px solid rgba(96,165,250,0.25); border-radius: 8px; }
-
-/* Boutons simples */
+/* ===== ÉLÉMENTS INTERACTIFS ===== */
 .btn {
     background: linear-gradient(90deg,#60A5FA,#A78BFA);
     border: none;
@@ -448,19 +386,40 @@ canvas#visualizer {
     box-shadow: 0 6px 18px rgba(96,165,250,0.12);
     transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
 }
-.btn:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(96,165,250,0.18); }
-.btn:active { transform: translateY(-1px) scale(.99); }
 
-/* Confetti root (éléments générés dynamiquement y seront positionnés) */
-.confetti-root {
-    position: fixed;
-    pointer-events: none;
-    inset: 0;
-    z-index: 9999;
-    overflow: visible;
+.btn:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 10px 26px rgba(96,165,250,0.18); 
 }
 
-/* Pièce de confetti */
+.btn:active { 
+    transform: translateY(-1px) scale(.99); 
+}
+
+.car-emoji {
+    font-size: 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 300ms ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.car-emoji:active { 
+    transform: translateY(-6px) rotate(-6deg) scale(1.05); 
+}
+
+.interactive-title { 
+    cursor: pointer; 
+    transition: transform .45s ease; 
+}
+
+.interactive-title:hover { 
+    transform: translateY(-6px) scale(1.02) rotate(-1deg); 
+}
+
+/* ===== ANIMATIONS ===== */
 .confetti-piece {
     position: absolute;
     top: -10px;
@@ -470,6 +429,7 @@ canvas#visualizer {
     animation: confetti-fall 4s linear forwards;
     transform-origin: center;
 }
+
 @keyframes confetti-fall {
     0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 1; }
     30% { transform: translateY(20vh) rotate(200deg) translateX(15px); }
@@ -477,28 +437,122 @@ canvas#visualizer {
     100% { transform: translateY(120vh) rotate(720deg) translateX(0); opacity: 0; }
 }
 
-/* Texte titre interactif */
-.interactive-title { cursor: pointer; transition: transform .45s ease; }
-.interactive-title:hover { transform: translateY(-6px) scale(1.02) rotate(-1deg); }
-
-/* Section a-propos expand/collapse */
-.a-propos.collapsed { max-height: 220px; overflow: hidden; transition: max-height .45s cubic-bezier(.2,.9,.2,1); }
-.a-propos.expanded { max-height: 2000px; transition: max-height .6s cubic-bezier(.2,.9,.2,1); }
-
-/* Grid et cartes d'événements */
-.apropos-grid { margin-top: 12px; display: grid; gap: 12px; grid-template-columns: 1fr; }
-@media(min-width:900px) { .apropos-grid { grid-template-columns: 1fr 1fr; } }
-
-.event-card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.04);
-    transition: transform .22s ease, box-shadow .22s ease;
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
 }
-.event-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 18px 40px rgba(0,0,0,0.35); }
-.event-card.pulse { animation: pulse 900ms ease-in-out 1; }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
 
-/* petit style d'accessibilité pour focus clavier */
-.btn:focus, .event-card:focus { outline: 3px solid rgba(96,165,250,0.14); }
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablettes */
+@media (max-width: 768px) {
+    .ContainerMenuAcceuil,
+    .TableMenuVoiture {
+        padding: 12px;
+        margin: 8px auto;
+        border-radius: 10px;
+    }
+    
+    .voiture-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .divCars {
+        padding: 20px;
+        margin: 10px;
+        border-radius: 16px;
+    }
+    
+    .TableMenuAcceuil .breadcrumb {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .crumb:not(:last-child)::after { 
+        display: none; 
+    }
+    
+    .menu-link { 
+        justify-content: center; 
+    }
+}
+
+/* Mobiles */
+@media (max-width: 480px) {
+    .ContainerMenuAcceuil,
+    .TableMenuVoiture {
+        padding: 10px;
+        margin: 5px auto;
+        border-radius: 8px;
+    }
+    
+    .voiture-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .divCars {
+        padding: 15px;
+        margin: 5px;
+        border-radius: 12px;
+    }
+    
+    .car-title {
+        font-size: 1.3rem;
+    }
+    
+    .car-badge {
+        top: 10px;
+        right: 10px;
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+    
+    .a-propos, .apropos {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    
+    .Title-a-propos {
+        font-size: 1.5rem;
+    }
+    
+    .breadcrumb {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 360px) {
+    .voiture-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .divCars {
+        padding: 12px;
+        margin: 5px;
+    }
+    
+    .car-title {
+        font-size: 1.1rem;
+    }
+    
+    .info-line {
+        padding: 6px 8px;
+    }
+}
+
+/* Support réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
