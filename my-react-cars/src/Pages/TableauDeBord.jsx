@@ -22,7 +22,7 @@ function TableauDeBord(){
     return(
         <div>
             
-              {client.Nom || client.Prenom || client.adresse || client.email || client.password || client.telephone ?<TableauDebord Nom={client.Nom} Prenom={client.Prenom} /> : <div><Navbar /><h1> <u>Vous avez besoin d'être connecter pour accéder à cette page</u></h1><button style={{width: "100%", backgroundColor: "red"}} onClick={handleRedirect}>Retourner au menu</button></div>}
+              {client.Nom || client.Prenom || client.adresse || client.email || client.password || client.telephone ?<TableauDebord Nom={client.Nom} Prenom={client.Prenom} /> : <div><Navbar /><h1> <u>Vous avez besoin d'être connecter ou inscrit pour accéder à cette page</u></h1><button style={{width: "100%", backgroundColor: "red"}} onClick={handleRedirect}>Retourner au menu</button></div>}
         </div>
       
     )

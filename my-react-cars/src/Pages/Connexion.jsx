@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../Container/menuAcceuil";
 import "../StyleEverywhere/Stylish.css";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Myconnexion() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,14 @@ function Myconnexion() {
   const[prenom,SetPrenom] = useState("");
   const[adresse,SetAdresse] = useState("");
   const[telephone,SetTelephone] = useState("");
-  
+  //////////////////////////////////
+
+  const location = useLocation();
+  // Determine connection status robustly: prefer location.state, fall back to stored client
+  const stateIsConnected =
+    location.state?.isConnected === true || location.state?.isConnected === "true";
+  const storageIsConnected = !!localStorage.getItem("client");
+  const isConnected = stateIsConnected || storageIsConnected;
   const navigate = useNavigate();
 
   
@@ -79,8 +87,8 @@ function Myconnexion() {
 
   return (
     <div>
-      <Navbar />
-       <h5>Information: La connexion a été désactivé car l'hebrgeur nécessite que je paie un abonnement donc pour le moment pas de connexion (l'inscription aussi).</h5>
+  <Navbar isConnected={isConnected} />
+       <h5 style={{textAlign: "center"}}>Information: La connexion a été désactivé car l'hebrgeur nécessite que je paie un abonnement, donc pour le moment pas de connexion (l'inscription aussi).</h5>
       <audio id="clickSound" src="/typewriter.mp3" />
       <form onSubmit={verifyInput} disabled>
         <table disabled style={{float: "left" }}>
@@ -117,7 +125,7 @@ function Myconnexion() {
         
       </form>
 
-      <table border="1" style={{float: "right", borderColor: "blue"}}>
+      <table border="1" style={{float: "right", borderColor: "blue"}} >
             <tr>
               <th colSpan="2">
                   Inscription
@@ -165,7 +173,7 @@ function Myconnexion() {
             </tr>
             <tr>
               <td colSpan="2">
-                <button type="submit" style={{width: "100%"}} onClick={senddata}>Envoyer</button>
+                <button disabled={localStorage.length>0 ? true : false}  type="submit" style={{width: "100%"}} onClick={senddata}>Envoyer</button>
               </td>
             </tr>
         </table>
