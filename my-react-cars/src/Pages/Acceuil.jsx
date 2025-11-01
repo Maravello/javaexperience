@@ -15,13 +15,16 @@ function Acceuil() {
 
     const addToCart = (car) => {
         console.log("🛒 Ajout au panier:", car);
+       
         setClientCars(prevCars => {
             // ✅ Vérification que prevCars est un tableau
             if (!Array.isArray(prevCars)) {
                 return [car]; // Si pas un tableau, on crée un nouveau tableau
             }
             return [...prevCars, car]; // Sinon on ajoute normalement
-        });
+           
+        })
+         localStorage.setItem("ListeVoitures", [JSON.stringify(clientCars)]);;
     };
 
     useEffect(() => {
@@ -43,7 +46,7 @@ function Acceuil() {
     }, []);
 
 
-    if (loading) return <div>🔄 Chargement...</div>;
+    if (loading) return <div><img style={{position: "relative",top: "250px"}} src="./load.gif" alt="chargement" /></div>;
     if (error) return <div>❌ Erreur: {error}</div>;
 
     return (
@@ -84,7 +87,7 @@ function Acceuil() {
                 <td>
                     {car.immatriculation}
                 </td>
-                {console.log(car)}
+                
                  </tr>
             ))}
                 
