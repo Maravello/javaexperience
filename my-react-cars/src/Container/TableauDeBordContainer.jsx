@@ -56,10 +56,11 @@ function TBDcontainer(props){
             <Navbar  isConnected={localStorage.length > 0} />
                         <h1>Bonjour {props.Prenom} {props.Nom}  </h1>
          <h5 style={{textAlign:"center"}}>*De nouvelles fonctionnalité seront à venir*</h5>
+         
                 {ListeVoitures ? 
                 <div>
                     <h3 style={{textAlign: "center"}}><u>Récapitulatif de vos voiture demandée.</u></h3>
-                    <table border={1} style={{borderColor: "blue", borderRadius: "20px", width: "100%"}}>
+                    <table border={1}  id="Mytable">
                     <tr>
                         <th>
                             id
@@ -80,11 +81,14 @@ function TBDcontainer(props){
                        
                     
                 </table>
+                
                 <button style={{backgroundColor: "blue", borderRadius: "20px", width: "100%", justifyContent: "center", display: 'flex'}} onClick={createTextFile}>Enregistrer vos voitures</button>
                 </div>: <div><h5>Vous pouvez ajouter des voiture depuis acceuil pour avoir un devis</h5></div>}
 
 
         <button type="submit" style={{justifyContent: "center", alignItems: "center",display: "flex", backgroundColor: "red", width: "100%"}} onClick={heDisconnected}>Déconnexion</button>
+        
+       
         </div>
   
     )

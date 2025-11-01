@@ -85,6 +85,7 @@ function Myconnexion() {
     <div>
   <Navbar isConnected={localStorage.length > 0} />
        <h5 style={{textAlign: "center"}}>Information: La connexion a été désactivé car l'hebrgeur nécessite que je paie un abonnement, donc pour le moment pas de connexion (l'inscription aussi).</h5>
+        <h5 style={{textAlign: "center"}}>Le css pour le mobile viendra plus tard</h5>
       <audio id="clickSound" src="/typewriter.mp3" />
       <form onSubmit={verifyInput} disabled>
         <table disabled style={{float: "left" }}>

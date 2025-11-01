@@ -556,3 +556,54 @@ div{
         transition-duration: 0.01ms !important;
     }
 }
+
+.Mytable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid blue;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.Myth, .Mytd {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid blue;
+}
+
+.Myth {
+  background-color: #f0f0f0;
+}
+
+/* Pour mobile : transformation en liste */
+@media (max-width: 768px) {
+  .Mytable, .Mythead, .Mytbody, .Myth, .Mytd, .Mytr {
+    display: block;
+  }
+
+  thead { display: none; }
+
+  .Mytr {
+    margin-bottom: 15px;
+    border: 1px solid blue;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .Mytd {
+    position: relative;
+    padding-left: 50% !important;
+    text-align: right;
+    border: none;
+  }
+
+  .Mytd:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 45%;
+    font-weight: bold;
+    text-align: left;
+  }
+}   
